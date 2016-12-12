@@ -20,8 +20,8 @@ class Bitmap
   end
 
   def do_zero_matrix
-    (0...@size_x).each do |i|
-      (0...@size_y).each do |j|
+    (0...@size_y).each do |i|
+      (0...@size_x).each do |j|
         @matrix[i][j] = 'O'
       end
     end
@@ -34,10 +34,10 @@ class Bitmap
   end
 
   def allocate_matrix
-    @matrix = Array.new(@size_x)
+    @matrix = Array.new(@size_y)
 
-    (0...@size_x).each do |i|
-      @matrix[i] = Array.new(@size_y)
+    (0...@size_y).each do |i|
+      @matrix[i] = Array.new(@size_x)
     end
   end
 end
