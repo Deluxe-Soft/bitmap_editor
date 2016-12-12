@@ -10,7 +10,7 @@ RSpec.describe Bitmap do
     DEFAULT_SIZE = 10
 
     before(:each) do
-      @bitmap = Bitmap.new(DEFAULT_SIZE, DEFAULT_SIZE )
+      @bitmap = Bitmap.new(DEFAULT_SIZE, DEFAULT_SIZE)
     end
 
     it "Should have proper size" do
