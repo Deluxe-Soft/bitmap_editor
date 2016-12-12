@@ -1,4 +1,11 @@
 example_id                   | status | run_time        |
 ---------------------------- | ------ | --------------- |
-./spec/bitmap_spec.rb[1:1:1] | passed | 0.00079 seconds |
-./spec/bitmap_spec.rb[1:1:2] | failed | 0.00011 seconds |
+./spec/bitmap_spec.rb[1:1:1] | passed | 0.00037 seconds |
+./spec/bitmap_spec.rb[1:1:2] | passed | 0.00199 seconds |
+./spec/bitmap_spec.rb[1:2:1] | passed | 0.00014 seconds |
+./spec/bitmap_spec.rb[1:2:2] | passed | 0.00012 seconds |
+./spec/bitmap_spec.rb[1:2:3] | passed | 0.00022 seconds |
+./spec/bitmap_spec.rb[1:3:1] | passed | 0.00015 seconds |
+./spec/bitmap_spec.rb[1:3:2] | passed | 0.00092 seconds |
+./spec/bitmap_spec.rb[1:3:3] | passed | 0.00085 seconds |
+./spec/bitmap_spec.rb[1:3:4] | passed | 0.00022 seconds |
