@@ -29,6 +29,27 @@ class BitmapEditor
               size_x, size_y = tokenized_input[1], tokenized_input[2]
               @matrix = Bitmap.new(size_x.to_i, size_y.to_i)
               @initialized = true
+            when 'L'
+              if @initialized
+                params = tokenized_input[1..3]
+                @matrix.draw_pixel(*params)
+              else
+                puts "Matrix already not initialized :( See HELP"
+              end
+            when 'V'
+              if @initialized
+                params = tokenized_input[1..4]
+                @matrix.draw_vert(*params)
+              else
+                puts "Matrix already not initialized :( See HELP"
+              end
+            when 'H'
+              if @initialized
+                params = tokenized_input[1..4]
+                @matrix.draw_hor(*params)
+              else
+                puts "Matrix already not initialized :( See HELP"
+              end
             when 'C'
               if @initialized
                 @matrix.do_zero_matrix

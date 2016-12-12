@@ -9,7 +9,7 @@ class Bitmap
 
   def print_table
     @matrix.each do |row|
-      puts row.each { |p| p }.join(" ")
+      puts row.each { |p| p }.join('')
     end
 
     return
@@ -17,6 +17,25 @@ class Bitmap
 
   def [](index)
     @matrix[index]
+  end
+
+  def draw_pixel(x, y, col)
+    x = x.to_i - 1
+    y = y.to_i - 1
+
+    @matrix[y][x] = col
+  end
+
+  def draw_vert(x, y1, y2, col)
+    for y in (y1..y2)
+      draw_pixel(x,y, col)
+    end
+  end
+
+  def draw_hor(x1, x2, y, col)
+    for x in (x1..x2)
+      draw_pixel(x,y, col)
+    end
   end
 
   def do_zero_matrix
