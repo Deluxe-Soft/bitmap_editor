@@ -1,7 +1,10 @@
+require_relative 'bitmap'
+
 class BitmapEditor
 
   def run
     @running = true
+    @initialized = false
     puts 'type ? for help'
     while @running
       print '> '
@@ -11,8 +14,31 @@ class BitmapEditor
           show_help
         when 'X'
           exit_console
+        when 'S'
+          if @initialized
+            @matrix.print_table
+          else
+            puts "Matrix already not initialized :( See HELP"
+          end
         else
-          puts 'unrecognised command :('
+          tokenized_input = input.split(" ")
+          first_letter = tokenized_input[0]
+
+          case first_letter
+            when 'I'
+              size_x, size_y = tokenized_input[1], tokenized_input[2]
+              @matrix = Bitmap.new(size_x.to_i, size_y.to_i)
+              @initialized = true
+            when 'C'
+              if @initialized
+                @matrix.do_zero_matrix
+              else
+                puts "Matrix already not initialized :( See HELP"
+              end
+            else
+              puts 'Unrecognised command :('
+          end
+
       end
     end
   end
