@@ -1,4 +1,4 @@
-require_relative 'monkey'
+require_relative 'addons/monkey'
 
 module Validator
 

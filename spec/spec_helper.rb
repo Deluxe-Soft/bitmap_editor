@@ -71,7 +71,7 @@ RSpec.configure do |config|
 
   # Use color not only in STDOUT but also in pagers and files
   config.tty = true
-  
+
   # Many RSpec users commonly either run the entire suite or an individual
   # file, and it's useful to allow more verbose output when running an
   # individual spec file.

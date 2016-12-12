@@ -1,5 +1,5 @@
 require_relative 'bitmap'
-require_relative 'monkey'
+require_relative 'addons/monkey'
 require_relative 'uiactions'
 
 class BitmapEditor
