@@ -77,27 +77,60 @@ RSpec.describe Bitmap do
 
     before(:each) do
       @matrix = Bitmap.new(5,6)
+      @initialized = true
+    end
+
+
+    let(:ui_matrix) do
+      "ZYYYY\n"\
+      "XOOOO\n"\
+      "XOOOO\n"\
+      "XOOOO\n"\
+      "XOOOO\n"\
+      "XOOOO\n"
+    end
+
+    it "Should be resized after reinitalization" do
+      expect(@matrix.size_x).to eq(5)
+      expect(@matrix.size_y).to eq(6)
+
+      init_matrix(["I","7","10"])
+
+      expect(@matrix.size_x).to eq(7)
+      expect(@matrix.size_y).to eq(10)
+    end
+
+
+    it "Should reflect standard commands" do
+
+      draw_horizontal_segment(["H","1","5","1","Y"])
+      draw_vertical_segment(["V","1","1","6","X"])
+      draw_single_pixel(["L","1","1","Z"])
+
+      expect{ @matrix.print_table}.to output(ui_matrix).to_stdout
+
     end
 
     it "Should throw Exception while bullshit initialization" do
-      expect{ init_matrix(["I","1","300"]) }.to raise_error(ArgumentError)
+      expect{ init_matrix(["I","1","300"]) }.to raise_error(ArgumentError) # Exceeds 250
     end
 
     it "Test all stupid calls" do
-      expect{ draw_vertical_segment(["L","1","3","7","W"]) }.to raise_error(ArgumentError)
 
-      expect{ draw_vertical_segment(["L","2","3","6","W"]) }.to raise_error(ArgumentError)
-      expect{ draw_vertical_segment(["L","2","5","3","W"]) }.to raise_error(ArgumentError)
-      expect{ draw_vertical_segment(["L","2","3","6","λ"]) }.to raise_error(ArgumentError)
 
-      expect{ draw_horizontal_segment(["H","2","3","11","W"]) }.to raise_error(ArgumentError)
-      expect{ draw_horizontal_segment(["H","2","25","6","W"]) }.to raise_error(ArgumentError)
+      expect{ draw_vertical_segment(["V","2","11","11","W"]) }.to raise_error(ArgumentError) # Same stuff
+      expect{ draw_vertical_segment(["V","2","5","3","W"]) }.to raise_error(ArgumentError) # Smaller Y1 > Y2
+      expect{ draw_vertical_segment(["V","2","3","6","λ"]) }.to raise_error(ArgumentError) # Lambda :O
+
+      expect{ draw_horizontal_segment(["H","2","3","11","W"]) }.to raise_error(ArgumentError) # Out of bound
+      expect{ draw_horizontal_segment(["H","25","2","6","W"]) }.to raise_error(ArgumentError) # Smaller X1 > X2
       expect{ draw_horizontal_segment(["H","2","3","6","γ"]) }.to raise_error(ArgumentError) # Gamma, not 'Y' here ;)
 
-      expect{ draw_single_pixel(["L","11","7","A"]) }.to raise_error(ArgumentError)
-      expect{ draw_single_pixel(["L","1","1","Σ"]) }.to raise_error(ArgumentError)
-
+      expect{ draw_single_pixel(["L","11","7","A"]) }.to raise_error(ArgumentError) # Out of bound
+      expect{ draw_single_pixel(["L","1","1","Σ"]) }.to raise_error(ArgumentError) # Sigma :<
     end
+
+
   end
 
 end
