@@ -1,9 +1,10 @@
 class Bitmap
-  attr_reader :size_x, :size_y
+  attr_reader :size_x, :size_y, :matrix
 
   def initialize(size_x, size_y)
-    @size_x = size_x
-    @size_y = size_y
+    @size_x = size_x.to_i
+    @size_y = size_y.to_i
+
     create_and_init_matrix
   end
 
