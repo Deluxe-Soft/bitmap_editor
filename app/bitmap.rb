@@ -23,7 +23,7 @@ class Bitmap
     x = x.to_i - 1
     y = y.to_i - 1
 
-    @matrix[y][x] = col
+    self[y][x] = col
   end
 
   def draw_vert(x, y1, y2, col)
@@ -39,9 +39,9 @@ class Bitmap
   end
 
   def do_zero_matrix
-    (0...@size_y).each do |i|
-      (0...@size_x).each do |j|
-        @matrix[i][j] = 'O'
+    (1..@size_x).each do |j|
+      (1..@size_y).each do |i|
+        draw_pixel(j,i, "O")
       end
     end
   end
